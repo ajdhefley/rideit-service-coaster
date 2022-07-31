@@ -18,6 +18,9 @@ public class Coaster {
     @Column(name="park")
     private String park;
 
+    @Column(name="location")
+    private String location;
+
     @Column(name="type")
     private String type;
 
@@ -74,6 +77,8 @@ public class Coaster {
     public String getName() { return this.name; }
 
     public String getPark() { return this.park; }
+
+    public String getLocation() { return this.location; }
 
     public String getType() { return this.type; }
 
