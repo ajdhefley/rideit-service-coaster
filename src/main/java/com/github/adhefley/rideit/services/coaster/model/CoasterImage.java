@@ -17,6 +17,12 @@ public class CoasterImage {
     @Column(name="base64")
     private String base64;
 
+    @Column(name="width")
+    private Integer width;
+
+    @Column(name="height")
+    private Integer height;
+
     @ManyToOne
     @JoinColumn(name="coasterid")
     public Coaster coaster;
@@ -31,6 +37,14 @@ public class CoasterImage {
 
     public String getBase64() {
         return this.base64;
+    }
+
+    public Integer getWidth() {
+        return this.width;
+    }
+
+    public Integer getHeight() {
+        return this.height;
     }
 
 }
