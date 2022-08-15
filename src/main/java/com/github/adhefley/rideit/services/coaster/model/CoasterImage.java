@@ -23,6 +23,9 @@ public class CoasterImage {
     @Column(name="height")
     private Integer height;
 
+    @Column(name="verified")
+    private Boolean verified;
+
     @ManyToOne
     @JoinColumn(name="coasterid")
     public Coaster coaster;
@@ -47,4 +50,8 @@ public class CoasterImage {
         return this.height;
     }
 
+    public Boolean getVerified() {
+        return this.verified;
+    }
+    
 }

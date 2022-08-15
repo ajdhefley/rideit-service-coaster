@@ -7,9 +7,7 @@ import com.github.ajdhefley.rideit.services.coaster.model.Coaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +38,16 @@ public class CoasterController {
     @GetMapping("/coaster/{coasterUrl}/images")
     public ResponseEntity<List<CoasterImage>> getCoasterImagesByUrl(@PathVariable("coasterUrl") String coasterUrl) {
         return new ResponseEntity<>(this.coasterImageRepository.findByCoasterUrl(coasterUrl), HttpStatus.OK);
+    }
+
+    @PostMapping("/coaster/{coasterUrl}/image")
+    public ResponseEntity<List<CoasterImage>> saveCoasterImageByUrl(@PathVariable("coasterUrl") String coasterUrl, @RequestBody CoasterImage image) {
+        return new ResponseEntity<>(this.coasterImageRepository.save(image), HttpStatus.OK);
+    }
+
+    @PostMapping("/coaster/image/{coasterImageId}/verification")
+    public ResponseEntity<List<CoasterImage>> verifyCoasterImage(@PathVariable("coasterImageId") Integer coasterImageId) {
+        return new ResponseEntity<>(this.coasterImageRepository.save(image), HttpStatus.OK);
     }
 
 }
