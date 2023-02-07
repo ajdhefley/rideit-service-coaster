@@ -41,13 +41,13 @@ public class CoasterController {
     }
 
     @PostMapping("/coaster/{coasterUrl}/image")
-    public ResponseEntity<List<CoasterImage>> saveCoasterImageByUrl(@PathVariable("coasterUrl") String coasterUrl, @RequestBody CoasterImage image) {
+    public ResponseEntity<CoasterImage> saveCoasterImageByUrl(@PathVariable("coasterUrl") String coasterUrl, @RequestBody CoasterImage image) {
         return new ResponseEntity<>(this.coasterImageRepository.save(image), HttpStatus.OK);
     }
 
     @PostMapping("/coaster/image/{coasterImageId}/verification")
-    public ResponseEntity<List<CoasterImage>> verifyCoasterImage(@PathVariable("coasterImageId") Integer coasterImageId) {
-        return new ResponseEntity<>(this.coasterImageRepository.save(image), HttpStatus.OK);
+    public ResponseEntity<CoasterImage> verifyCoasterImage(@PathVariable("coasterImageId") Integer coasterImageId) {
+        return null; // TODO
     }
 
 }
