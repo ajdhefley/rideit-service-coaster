@@ -1,6 +1,7 @@
 package com.github.ajdhefley.rideit.services.coaster.model;
 
 import javax.persistence.*;
+import com.github.ajdhefley.rideit.services.coaster.model.Coaster;
 
 @Entity
 @Table(name="coasterimages")

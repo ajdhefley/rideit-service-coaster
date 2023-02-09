@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CoasterController {
@@ -19,6 +20,11 @@ public class CoasterController {
 
     @Autowired
     CoasterImageRepository coasterImageRepository;
+
+    @RequestMapping(path = "/coaster", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Coaster> saveCoaster(@RequestBody Coaster coaster) {
+        return new ResponseEntity<>(this.coasterRepository.save(coaster), HttpStatus.OK);
+    }
 
     @GetMapping("/coasters")
     public ResponseEntity<List<Coaster>> getCoasters() {
@@ -40,14 +46,16 @@ public class CoasterController {
         return new ResponseEntity<>(this.coasterImageRepository.findByCoasterUrl(coasterUrl), HttpStatus.OK);
     }
 
-    @PostMapping("/coaster/{coasterUrl}/image")
-    public ResponseEntity<CoasterImage> saveCoasterImageByUrl(@PathVariable("coasterUrl") String coasterUrl, @RequestBody CoasterImage image) {
+    @RequestMapping(path = "/coaster/{coasterId}/image", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<CoasterImage> saveCoasterImage(@PathVariable("coasterId") int coasterId, @RequestBody CoasterImage image) {
+        image.coaster = this.coasterRepository.findById(coasterId).get();
         return new ResponseEntity<>(this.coasterImageRepository.save(image), HttpStatus.OK);
     }
 
-    @PostMapping("/coaster/image/{coasterImageId}/verification")
-    public ResponseEntity<CoasterImage> verifyCoasterImage(@PathVariable("coasterImageId") Integer coasterImageId) {
-        return null; // TODO
+    @RequestMapping(path = "coaster/{coasterId}/image", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity<CoasterImage> updateCoasterImage(@PathVariable("coasterId") int coasterId, @RequestBody CoasterImage image) {
+        image.coaster = this.coasterRepository.findById(coasterId).get();
+        return new ResponseEntity<>(this.coasterImageRepository.save(image), HttpStatus.OK);
     }
 
 }
