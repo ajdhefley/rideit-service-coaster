@@ -36,12 +36,12 @@ public class CoasterController {
         return new ResponseEntity<>(this.coasterRepository.findLike(query), HttpStatus.OK);
     }
 
-    @GetMapping("/coaster/{coasterUrl}")
+    @GetMapping("/coaster/url/{coasterUrl}")
     public ResponseEntity<Coaster> getCoasterByUrl(@PathVariable("coasterUrl") String coasterUrl) {
         return new ResponseEntity<>(this.coasterRepository.findByUrl(coasterUrl), HttpStatus.OK);
     }
 
-    @GetMapping("/coaster/{coasterUrl}/images")
+    @GetMapping("/coaster/url/{coasterUrl}/images")
     public ResponseEntity<List<CoasterImage>> getCoasterImagesByUrl(@PathVariable("coasterUrl") String coasterUrl) {
         return new ResponseEntity<>(this.coasterImageRepository.findByCoasterUrl(coasterUrl), HttpStatus.OK);
     }
